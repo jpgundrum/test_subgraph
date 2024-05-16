@@ -8,9 +8,9 @@ dataSources:
     name: PeaqDid
     network: agung
     source:
-      address: "0x45cAD51575120934Db6Ff515A03Ea4Ef1aaA5fB6"
+      address: "deployed_contract_address"
       abi: PeaqDid
-      startBlock: 2420822
+      startBlock: "start_block_as_int"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -19,7 +19,7 @@ dataSources:
         - DidDocument
       abis:
         - name: PeaqDid
-          file: ./abis/PeaqDid.json
+          file: ./artifacts/contracts/PeaqDid.sol/PeaqDid.json
       eventHandlers:
         - event: NewDid(string,string)
           handler: handleNewDid
