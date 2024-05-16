@@ -1,0 +1,4 @@
+type DidDocument @entity {
+  id: String!
+  controller: String!
+}

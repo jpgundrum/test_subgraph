@@ -1,0 +1,15 @@
+{
+  "name": "hardhat-project",
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.71.2",
+    "@graphprotocol/graph-ts": "^0.35.1",
+    "@nomicfoundation/hardhat-ignition": "^0.15.4",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.0.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.10.0"
+  },
+  "devDependencies": {
+    "hardhat": "^2.22.4"
+  }
+}
