@@ -6,12 +6,12 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract PeaqDid {
 
-    event NewDid(string id, string controller); // event to the graph
-
     struct DidDocument {
         string id;
         string controller;
     }
+
+    event NewDid(string didName, DidDocument didDoc); // event to the graph
 
     // create a contract that gives back a value representing a did_hash
     // -mapping of hash (use native crypto algo to mock) and did name set by user
@@ -22,22 +22,24 @@ contract PeaqDid {
 
 
     // may want to store hash only representing a less costly place to store the did
-    function createDid(string memory _nameDid) public {
+    function createDid(string memory _didName) public {
         string memory base = "did:peaq:";
         // Convert msg.sender to string
         string memory senderAddress = Strings.toHexString(uint160(msg.sender), 20);
         string memory did = string(abi.encodePacked(base, senderAddress));
 
-        nameToOwner[_nameDid] = msg.sender;
-        ownerToDid[msg.sender] = DidDocument(did,did);
+        DidDocument memory didDocument =  DidDocument(did,did);
+
+        nameToOwner[_didName] = msg.sender;
+        ownerToDid[msg.sender] = didDocument;
         
         // emit event
-        emit NewDid(did, did);
+        emit NewDid(_didName, didDocument);
     }
 
-    function readDid(string memory _nameDid) public view returns (string memory, string memory) {
+    function readDid(string memory _didName) public view returns (string memory, string memory) {
         // get address of the owner that created the _nameDid to read
-        address owner = nameToOwner[_nameDid];
+        address owner = nameToOwner[_didName];
 
         // get stored didDocument
         DidDocument memory docDid = ownerToDid[owner];

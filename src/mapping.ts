@@ -1,14 +1,23 @@
+import { NewDid } from '../generated/PeaqDid/PeaqDid';
+import { DidDocument, NameToDidDocument } from '../generated/schema';
 import { log } from '@graphprotocol/graph-ts';
-import { NewDid } from '../generated/PeaqDid/PeaqDid'
-import { DidDocument } from '../generated/schema'
 
 export function handleNewDid(event: NewDid): void {
-  log.info('NewDid event: id {}, contorller {}', [
-    event.params.id,
-    event.params.controller
+  log.info('NewDid event: didName {}, didDoc {}', [
+    event.params.didName,
+    event.params.didDoc.id,
+    event.params.didDoc.controller
   ]);
-  let did = new DidDocument(event.params.id)
-  did.id = event.params.id
-  did.controller = event.params.controller
-  did.save()
+
+  // Create and save the DidDocument entity
+  let did = new DidDocument(event.params.didDoc.id);
+  did.id = event.params.didDoc.id;
+  did.controller = event.params.didDoc.controller;
+  did.save();
+
+  // Create and save the NameToDidDocument entity
+  let nameToDidDocument = new NameToDidDocument(event.params.didName);
+  nameToDidDocument.id = event.params.didName;
+  nameToDidDocument.didDocument = did.id;
+  nameToDidDocument.save();
 }

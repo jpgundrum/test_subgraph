@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "deployed_contract_address"
       abi: PeaqDid
-      startBlock: "start_block_as_int"
+      startBlock: start_block_as_int
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -21,6 +21,6 @@ dataSources:
         - name: PeaqDid
           file: ./artifacts/contracts/PeaqDid.sol/PeaqDid.json
       eventHandlers:
-        - event: NewDid(string,string)
+        - event: NewDid(string,(string,string))
           handler: handleNewDid
       file: ./src/mapping.ts
