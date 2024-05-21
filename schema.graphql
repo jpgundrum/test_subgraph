@@ -8,4 +8,3 @@ type NameToDidDocument @entity {
   id: String!
   didDocument: DidDocument!
 }
-

@@ -6,19 +6,19 @@
 2. Compile to produce the abi
 - `npx hardhat compile`
 
-3. Deploy smart contract to agung
-`npx hardhat ignition deploy ./ignition/modules/PeaqDid.js --network agung`
+3. Deploy smart contract to peaq
+`npx hardhat ignition deploy ./ignition/modules/PeaqDid.js --network peaq`
 - note down the contract address
-- goto agung [block explorer](https://agung-testnet.subscan.io/) using contract address
+- goto peaq [block explorer](https://peaq.subscan.io/) using contract address
 - get block number the contract was deployed at
 - record contract address and block number into subgraph.yaml
 - build the auto-generated mapping file with cmd `graph codegen`
 
 4. Write data to your contract
 - in your scripts/interactDid.js make sure to change the contractAddress the address you obtained after deploying
-`npx hardhat run scripts/interactDid.js --network agung`
+`npx hardhat run scripts/interactDid.js --network peaq`
 
-5. Deploy graph from cloning the [graph-node](https://github.com/graphprotocol/graph-node). Understand the README.md file located in that repository to understand how o properly start a local graph node
+5. Deploy graph from cloning the [graph-node](https://github.com/graphprotocol/graph-node). Understand the README.md file located in that repository to understand how to properly start a local graph node
 - make sure to have ipfs and PostgreSQL running
 - ipfs cmd `ipfs daemon`
 - PostgreSQL cmds: `initdb -D .postgres -E UTF8 --locale=C` followed by `pg_ctl -D .postgres -l logfile start` and `createdb graph-node`
@@ -26,7 +26,7 @@
 ```
 cargo run -p graph-node --release -- \
   --postgres-url postgresql://username[:password]@localhost:5432/graph-node \
-  --ethereum-rpc agung::https://rpcpc1-qa.agung.peaq.network \
+  --ethereum-rpc peaq::https://peaq_rpc_endpoint \
   --ipfs 127.0.0.1:5001
 ```
 
