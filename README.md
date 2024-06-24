@@ -40,25 +40,14 @@ cargo run -p graph-node --release -- \
 - query to test:
 ```
 {
-  nameToDidDocuments{
+  attributes {
     id
-    didDocument {
-      id
-      controller
-    }
-  }
-}
-
-
-
-{
-  nameToDidDocument(id: "myDid"){
-    id
-    didDocument {
-      id
-      controller
-    }
-  }
+    sender
+    didAccount
+    name
+    value
+    validity
+	}
 }
 ```
 
