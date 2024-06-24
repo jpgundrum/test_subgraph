@@ -47,7 +47,7 @@ cargo run -p graph-node --release -- \
     name
     value
     validity
-	}
+  }
 }
 ```
 
