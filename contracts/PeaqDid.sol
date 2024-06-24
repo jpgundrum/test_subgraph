@@ -13,10 +13,6 @@ contract PeaqDid {
 
     event NewDid(string didName, DidDocument didDoc); // event to the graph
 
-    // create a contract that gives back a value representing a did_hash
-    // -mapping of hash (use native crypto algo to mock) and did name set by user
-    // -msg.sender address to mpa that to the name. 
-
     mapping (string => address) public nameToOwner;
     mapping (address => DidDocument) public ownerToDid;
 

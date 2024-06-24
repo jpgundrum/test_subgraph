@@ -5,22 +5,26 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: PeaqDid
-    network: peaq
+    name: DID
+    network: agung
     source:
-      address: "deployed_contract_address"
-      abi: PeaqDid
-      startBlock: start_block_as_int
+      address: "0x0000000000000000000000000000000000000800"
+      abi: did.sol
+      startBlock: 2698020
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - DidDocument
+        - AddAttribute
       abis:
-        - name: PeaqDid
-          file: ./artifacts/contracts/PeaqDid.sol/PeaqDid.json
+        - name: did.sol
+          file: ./abi/did.sol.json
       eventHandlers:
-        - event: NewDid(string,(string,string))
+        - event: AddAttribute(address,address,bytes,bytes,uint32)
           handler: handleNewDid
+        - event: UpdateAttribute(address,address,bytes,bytes,uint32)
+          handler: handleUpdateDid
+        - event: RemoveAttribte(address,bytes)
+          handler: handleRemoveDid
       file: ./src/mapping.ts
